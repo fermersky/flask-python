@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  flask_api:
+    container_name: flask_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+  redis_compose:
+    container_name: redis_compose
+    image: redis
+    ports:
+      - 6379:6379

@@ -1,7 +1,9 @@
 from flask import Blueprint, request
 from auth.models import User
-from app import db
+from app import db, executor
 import time
+
+from utils.mail_client import send_simple_message
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -19,6 +21,10 @@ def login():
 
     db.session.add(user)
     db.session.commit()
+
+    # executor.submit(send_simple_message)
+    # send_simple_message.apply_async()
+    # send_simple_message()
 
     end = time.perf_counter()
 
